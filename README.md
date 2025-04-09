@@ -221,5 +221,4 @@ Set up Nginx to route traffic to the frontend and backend services:
 
 ---
 
-### 📸 Screenshot
-You can find the screenshots for the project setup and configuration [here](https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing).
+Screenshot
