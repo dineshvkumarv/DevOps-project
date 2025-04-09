@@ -1,32 +1,32 @@
 DevOps Project: CI/CD Pipeline
 Overview
-This project demonstrates how to set up a complete CI/CD pipeline to deploy a full-stack application (frontend + backend) using Docker, Docker Compose, GitHub Actions, and Nginx as a reverse proxy. The entire application is containerized and deployed on an Ubuntu VM in the cloud.
+This project demonstrates a complete CI/CD pipeline for deploying a full-stack application (frontend + backend) using Docker, Docker Compose, GitHub Actions, and Nginx as a reverse proxy. The application is containerized and deployed on an Ubuntu virtual machine (VM) in the cloud.
 
 Prerequisites
-Before getting started, make sure you have the following:
+Before you begin setting up this project, ensure you have the following:
 
-A GitHub account to host your repository.
+A GitHub account to host the repository.
 
-A Docker Hub account to store your Docker images.
+A Docker Hub account to store Docker images.
 
-Access to a cloud platform (like AWS or Azure) to set up an Ubuntu VM.
+Access to a cloud platform (e.g., AWS, Azure) to set up an Ubuntu VM.
 
 Basic knowledge of Docker, Docker Compose, Nginx, and CI/CD pipelines.
 
 Setup Instructions
-1. Clone the Repository
-Start by cloning this repository to your local machine:
+1. Repository Setup
+Clone this repository to your local machine:
 
 bash
 Copy
 Edit
 git clone https://github.com/dineshvkumarv/DevOps-project.git
 cd DevOps-project
-Once cloned, you can push any changes to the main branch to trigger the CI/CD pipeline.
+Push any changes to the main branch to trigger the CI/CD pipeline.
 
 2. Containerization & Deployment
 Dockerfiles
-Frontend Dockerfile (for building the frontend with Node.js):
+Frontend Dockerfile: Builds the frontend application using Node.js.
 
 Dockerfile
 Copy
@@ -38,7 +38,7 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["npm", "start", "--", "--host", "0.0.0.0"]
-Backend Dockerfile (for building the backend with Node.js):
+Backend Dockerfile: Builds the backend application using Node.js.
 
 Dockerfile
 Copy
@@ -51,7 +51,7 @@ COPY . .
 EXPOSE 8080
 CMD ["npm", "start"]
 Docker Compose
-Here’s the docker-compose.yml that defines the services for the frontend, backend, and database:
+The docker-compose.yml file defines the services for the frontend, backend, and database:
 
 yaml
 Copy
@@ -105,23 +105,23 @@ networks:
   app-network:
     driver: bridge
 3. Database Setup
-You have two options here for setting up the database:
+Choose one of the following options:
 
 Option 1: Install MongoDB directly on the Ubuntu VM.
 
 4. CI/CD Pipeline Configuration
-The CI/CD pipeline is handled by GitHub Actions. The workflow (defined in deploy.yml) automates these steps:
+The GitHub Actions workflow (deploy.yml) automates the following steps:
 
-Builds Docker images for both the frontend and backend.
+Build Docker images for the frontend and backend.
 
-Pushes the images to Docker Hub.
+Push the images to Docker Hub.
 
-Deploys the latest version of the application to the Ubuntu VM by pulling the updated images and restarting the containers.
+Deploy the application on the Ubuntu VM by pulling the latest images and restarting containers.
 
 5. Nginx Reverse Proxy Setup
-Nginx will route traffic to the frontend and backend services. Follow these steps to set it up:
+Set up Nginx to route traffic to the frontend and backend services:
 
-Install Nginx on your Ubuntu VM:
+Install Nginx on the Ubuntu VM:
 bash
 Copy
 Edit
@@ -167,5 +167,6 @@ http {
     }
 }
 Screenshots
-You can find the project screenshots here:
+View the screenshots of the project setup here:
 Project Screenshots
+
