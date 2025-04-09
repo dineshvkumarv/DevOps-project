@@ -219,6 +219,7 @@ Set up Nginx to route traffic to the frontend and backend services:
   docker compose down
   ```
 
----
+--
+- Screenshot
 
-Screenshot
+( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
