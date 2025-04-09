@@ -166,12 +166,6 @@ Set up Nginx to route traffic to the frontend and backend services:
   docker run -d -p 5000:5000 <username>/dine-backend:latest
   ```
 
-- **Push Docker Images to Docker Hub**:
-  ```bash
-  docker push <username>/dine-backend:latest
-  docker push <username>/dine-frontend:latest
-  ```
-
 - **Stop All Containers**:
   ```bash
   docker stop $(docker ps -q)
