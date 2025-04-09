@@ -208,14 +208,10 @@ Set up Nginx to route traffic to the frontend and backend services:
   docker logs <container_id>
   ```
 
-- **Access a Running Container**:
+-**Access a Running Container**:
   ```bash
   docker exec -it <container_id> /bin/sh
   ```
-
-  ```
-
---
 - Screenshot
 
 ( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
