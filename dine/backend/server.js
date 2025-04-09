@@ -1,36 +1,39 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
 
- 
-app.use(cors());  
-
-// Middleware for parsing JSON
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Database and routes
-const db = require("./app/models");
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/dinedb";
 
-db.mongoose
-
-  .connect(db.url, {
+mongoose
+  .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log("Connected to MongoDB");
   })
   .catch((err) => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
+    console.error("Failed to connect to MongoDB:", err.message);
+    process.exit(1);
   });
 
+app.get("/", (req, res) => {
+  res.send("Backend server is running");
+});
+
+// ✅ Correct way to register routes
 require("./app/routes/tutorial.routes")(app);
 
-// Start the server
-const PORT = 8080;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
+
