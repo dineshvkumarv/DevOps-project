@@ -184,7 +184,7 @@ http {
 
 - Screenshot
 
-( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
+Project Screenshots
 
 To execute the build and deployment process using Docker Compose , you can follow these steps. This includes building Docker images for your frontend, backend, and database (if applicable), and then deploying them using docker-compose. Below is a step-by-step guide:
 
