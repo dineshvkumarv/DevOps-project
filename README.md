@@ -156,14 +156,14 @@ Set up Nginx to route traffic to the frontend and backend services:
 #### Docker Commands
 - **Build Docker Images**:
   ```bash
-  docker build -t <username>/dine-backend:latest ./dine/backend
-  docker build -t <username>/dine-frontend:latest ./dine/frontend
+  docker build -t dineshkumarv1/dine-backend:latest ./dine/backend
+  docker build -t dineshkumarv1/dine-frontend:latest ./dine/frontend
   ```
 
 - **Run Docker Containers**:
   ```bash
-  docker run -d -p 3000:3000 <username>/dine-frontend:latest
-  docker run -d -p 5000:5000 <username>/dine-backend:latest
+  docker run -d -p 3000:3000 dineshkumarv1/dine-frontend:latest
+  docker run -d -p 5000:5000 dineshkumarv1/dine-backend:latest
   ```
 
 - **Stop All Containers**:
@@ -207,13 +207,13 @@ Set up Nginx to route traffic to the frontend and backend services:
   ```bash
   docker exec -it <container_id> /bin/sh
   ```
+commands
+
+  docker compose down
+
+  docker compose --built -d
 
 ---
+Screenshot
 
-### 6. Deployment Verification
-- Access the application in your web browser using the public IP or domain of your server.
-- Verify that the frontend and backend are properly routed via Nginx.
-
----
-
-This README now includes additional commands to help you better manage and debug your project. Let me know if you need further assistance!
+( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
