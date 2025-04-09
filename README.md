@@ -213,10 +213,6 @@ Set up Nginx to route traffic to the frontend and backend services:
   docker exec -it <container_id> /bin/sh
   ```
 
-#### Quick Commands
-- **Take Down Services**:
-  ```bash
-  docker compose down
   ```
 
 --
