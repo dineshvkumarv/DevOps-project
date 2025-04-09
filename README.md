@@ -1,26 +1,36 @@
- DevOps Project: CI/CD Pipeline 
+DevOps Project: CI/CD Pipeline
+Overview
+This project demonstrates how to set up a complete CI/CD pipeline to deploy a full-stack application (frontend + backend) using Docker, Docker Compose, GitHub Actions, and Nginx as a reverse proxy. The entire application is containerized and deployed on an Ubuntu VM in the cloud.
 
-📦 Overview
-This project demonstrates a complete CI/CD pipeline for deploying a full-stack application (frontend + backend) using Docker, Docker Compose, GitHub Actions, and Nginx as a reverse proxy. The application is containerized and deployed on an Ubuntu virtual machine (VM) in the cloud.
+Prerequisites
+Before getting started, make sure you have the following:
 
-🔧 Prerequisites
-Before setting up the project, ensure you have the following:
+A GitHub account to host your repository.
 
-A GitHub account to host the repository.
-A Docker Hub account to store Docker images.
-Access to a cloud platform  to set up an Ubuntu VM.
-Basic knowledge of Docker , Docker Compose , Nginx , and CI/CD pipelines 
+A Docker Hub account to store your Docker images.
 
-🛠 Setup Instructions
-1. Repository Setup
-Clone this repository to your local machine:
+Access to a cloud platform (like AWS or Azure) to set up an Ubuntu VM.
+
+Basic knowledge of Docker, Docker Compose, Nginx, and CI/CD pipelines.
+
+Setup Instructions
+1. Clone the Repository
+Start by cloning this repository to your local machine:
+
+bash
+Copy
+Edit
 git clone https://github.com/dineshvkumarv/DevOps-project.git
-cd Devops-project
-2. Push any changes to the main branch to trigger the CI/CD pipeline.
-Containerization & Deployment
-Dockerfiles
-- Frontend Dockerfile : Builds the frontend application using Node.js
+cd DevOps-project
+Once cloned, you can push any changes to the main branch to trigger the CI/CD pipeline.
 
+2. Containerization & Deployment
+Dockerfiles
+Frontend Dockerfile (for building the frontend with Node.js):
+
+Dockerfile
+Copy
+Edit
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
@@ -28,9 +38,11 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["npm", "start", "--", "--host", "0.0.0.0"]
+Backend Dockerfile (for building the backend with Node.js):
 
-- Backend Dockerfile : Builds the backend application using Node.js.
-
+Dockerfile
+Copy
+Edit
 FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
@@ -38,10 +50,12 @@ RUN npm install
 COPY . .
 EXPOSE 8080
 CMD ["npm", "start"]
+Docker Compose
+Here’s the docker-compose.yml that defines the services for the frontend, backend, and database:
 
-- Docker Compose
-The docker-compose.yml file defines the services for the frontend, backend, and database:
-
+yaml
+Copy
+Edit
 version: '3.8'
 
 services:
@@ -91,60 +105,32 @@ networks:
   app-network:
     driver: bridge
 3. Database Setup
-Choose one of the following options:
+You have two options here for setting up the database:
 
-Option 1 : Install MongoDB directly on the Ubuntu VM:
+Option 1: Install MongoDB directly on the Ubuntu VM.
+
 4. CI/CD Pipeline Configuration
-The GitHub Actions workflow (deploy.yml) automates the following steps:
+The CI/CD pipeline is handled by GitHub Actions. The workflow (defined in deploy.yml) automates these steps:
 
-Builds Docker images for the frontend and backend.
+Builds Docker images for both the frontend and backend.
+
 Pushes the images to Docker Hub.
-Deploys the application on the Ubuntu VM by pulling the latest images and restarting containers.
-Nginx Reverse Proxy
-Set up Nginx to route traffic to the frontend and backend services:
 
-Install Nginx on the Ubuntu VM:
+Deploys the latest version of the application to the Ubuntu VM by pulling the updated images and restarting the containers.
+
+5. Nginx Reverse Proxy Setup
+Nginx will route traffic to the frontend and backend services. Follow these steps to set it up:
+
+Install Nginx on your Ubuntu VM:
+bash
+Copy
+Edit
 sudo apt update
 sudo apt install -y nginx
--  Configure Nginx (/etc/nginx/sites-available/default)
-events {}
-
-http {
-    upstream frontend {
-        server frontend:3000;
-    }
-
-    upstream backend {
-        server backend:5000;
-    }
-
-    server {
-        listen 80;
-
-        location /api/ {
-            proxy_pass http://backend;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location / {
-            proxy_pass http://frontend;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_cache_bypass $http_upgrade;
-            
-
-Nginx Reverse Proxy
-Set up Nginx to route traffic to the frontend and backend services:
-
-Install Nginx on the Ubuntu VM:
-
+Configure Nginx (/etc/nginx/sites-available/default):
+nginx
+Copy
+Edit
 events {}
 
 http {
@@ -180,24 +166,6 @@ http {
         }
     }
 }
-
-
-- Screenshot
-
+Screenshots
+You can find the project screenshots here:
 Project Screenshots
-
-To execute the build and deployment process using Docker Compose , you can follow these steps. This includes building Docker images for your frontend, backend, and database (if applicable), and then deploying them using docker-compose. Below is a step-by-step guide:
-
-- docker images from dockerhub
-
-dineshkumarv1/dine-frontend:latest
-dineshkumarv1/dine-backend:latest
-
-
-docker-compose up -d
-
-
-
-
-
-
