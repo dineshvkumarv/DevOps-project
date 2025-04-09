@@ -192,6 +192,11 @@ Set up Nginx to route traffic to the frontend and backend services:
   docker-compose logs -f
   ```
 
+- **Rebuild and Start Services**:
+  ```bash
+  docker compose --build -d
+  ```
+
 #### Debugging Commands
 - **List Running Containers**:
   ```bash
@@ -207,13 +212,14 @@ Set up Nginx to route traffic to the frontend and backend services:
   ```bash
   docker exec -it <container_id> /bin/sh
   ```
-commands
 
+#### Quick Commands
+- **Take Down Services**:
+  ```bash
   docker compose down
-
-  docker compose --built -d
+  ```
 
 ---
-Screenshot
 
-( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
+### 📸 Screenshot
+You can find the screenshots for the project setup and configuration [here](https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing).
