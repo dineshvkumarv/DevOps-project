@@ -114,45 +114,10 @@ Set up Nginx to route traffic to the frontend and backend services:
 
 Install Nginx on the Ubuntu VM:
 
-[events {}
-
-http {
-    upstream frontend {
-        server frontend:3000;
-    }
-
-    upstream backend {
-        server backend:5000;
-    }
-
-    server {
-        listen 80;
-
-        location /api/ {
-            proxy_pass http://backend;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location / {
-            proxy_pass http://frontend;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_cache_bypass $http_upgrade;
-            try_files $uri $uri/ /index.html;
-        }
-    }
-}
 
 -Docker command to run 
 docker compose down
-docekr compose --build -d
+docker compose --build -d
 
 
 - Screenshot
