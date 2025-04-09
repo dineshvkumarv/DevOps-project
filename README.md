@@ -18,8 +18,8 @@ cd Devops-project
 Containerization & Deployment
 Dockerfiles
 - Frontend Dockerfile : Builds the frontend application using Node.js
-
-FROM node:18-alpine
+code
+[FROM node:18-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -35,12 +35,12 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 8080
-CMD ["npm", "start"]
+CMD ["npm", "start"]]
 
 - Docker Compose
 The docker-compose.yml file defines the services for the frontend, backend, and database:
 
-version: '3.8'
+[version: '3.8'
 
 services:
   mongo:
@@ -87,7 +87,7 @@ volumes:
 
 networks:
   app-network:
-    driver: bridge
+    driver: bridge]
 3. Database Setup
 Choose one of the following options:
 
@@ -105,37 +105,8 @@ Install Nginx on the Ubuntu VM:
 sudo apt update
 sudo apt install -y nginx
 -  Configure Nginx (/etc/nginx/sites-available/default)
-events {}
+[events {}
 
-http {
-    upstream frontend {
-        server frontend:3000;
-    }
-
-    upstream backend {
-        server backend:5000;
-    }
-
-    server {
-        listen 80;
-
-        location /api/ {
-            proxy_pass http://backend;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location / {
-            proxy_pass http://frontend;
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_cache_bypass $http_upgrade;
             
 
 Nginx Reverse Proxy
@@ -143,7 +114,7 @@ Set up Nginx to route traffic to the frontend and backend services:
 
 Install Nginx on the Ubuntu VM:
 
-events {}
+[events {}
 
 http {
     upstream frontend {
@@ -179,11 +150,14 @@ http {
     }
 }
 
+-Docker command to run 
 docker compose down
-docker compose --bulid -d
-
+docekr compose --build -d
 
 
 - Screenshot
 
 ( https://drive.google.com/drive/folders/101KAsRzAalgH7KdRuTinzoJ6CcF4hpdP?usp=sharing )
+
+
+
